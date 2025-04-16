@@ -1,4 +1,4 @@
-package main;
+package main.java;
 public class Character {
 	String name;
 	String race;
