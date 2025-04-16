@@ -1,4 +1,5 @@
-package main.java;
+package game;
+
 public class Character {
 	String name;
 	String race;

@@ -1,4 +1,5 @@
-package main.java;
+package game;
+
 public class Game {
 	public static void main(String[] args) {
 		Character hero = new Character("Artemis", "Elf", 100, 50, 30);

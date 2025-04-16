@@ -1,4 +1,5 @@
-package main.java;
+package game;
+
 public class BattleSystem {
 	public void fight(Character character, String enemyName, int enemyHp) {
 		System.out.println("전투 시작! " + character.getName() + " VS " + enemyName);
