@@ -1,3 +1,4 @@
+package main;
 public class Character {
 	String name;
 	String race;
