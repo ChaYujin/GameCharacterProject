@@ -8,7 +8,7 @@ public class Game {
 		hero.addItem(new Item("포션", 0, 0, 50));
 		hero.printInventory();
 		hero.attack("고블린", 25);
-		//hero.useItem("포션");
+		hero.useItem("포션");
 		hero.printInventory();
 		hero.attack("오크", 40);
 		System.out.println("최종 HP: " + hero.getHp());
