@@ -48,7 +48,7 @@ public class Character {
 		}
 	}
 
-	public void useItem(String itemName) {
+	public boolean useItem(String itemName) {
 		for (int i = 0; i < itemCount; i++) {
 			if (itemNames[i].equals(itemName)) {
 				attack += itemAttack[i];
@@ -56,9 +56,10 @@ public class Character {
 				hp += itemHeal[i];
 				System.out.println(itemNames[i] + " 아이템을 사용했습니다. 현재 능력치: HP=" + hp + ", 공격력=" + attack + ", 방어력=" + defense);
 				removeItem(i);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	private void removeItem(int index) {
@@ -93,7 +94,27 @@ public class Character {
 	}
 
 	public int getItemCount() {
+		return itemCount;
+	}
+
+	public int getInventoryItemCount() {
 		return items.size();
+	}
+
+	public String getItemName(int index) {
+		return itemNames[index];
+	}
+
+	public int getItemAttack(int index) {
+		return itemAttack[index];
+	}
+
+	public int getItemDefense(int index) {
+		return itemDefense[index];
+	}
+
+	public int getItemHeal(int index) {
+		return itemHeal[index];
 	}
 
 }
