@@ -13,7 +13,6 @@ public class Character {
 	int[] itemAttack = new int[10];
 	int[] itemDefense = new int[10];
 	int[] itemHeal = new int[10];
-	int itemCount = 0;
 	public static final int INVENTORY_SIZE = 10; // 최대 인벤토리 크기
 	List<Item> items = new ArrayList<>();
 
@@ -26,13 +25,13 @@ public class Character {
 	}
 
 	public boolean addItem(Item item) {
-		if( getItemCount() < INVENTORY_SIZE) {
+		if( items.size() < INVENTORY_SIZE) {
 			items.add(item);
-			itemNames[itemCount] = item.getName();
-			itemAttack[itemCount] = item.getAttack();
-			itemDefense[itemCount] = item.getDefense();
-			itemHeal[itemCount] = item.getHeal();
-			itemCount++;
+			int idx = items.size() - 1;
+			itemNames[idx] = item.getName();
+			itemAttack[idx] = item.getAttack();
+			itemDefense[idx] = item.getDefense();
+			itemHeal[idx] = item.getHeal();
 			return true;
 		} else {
 			System.out.println("인벤토리가 가득 찼습니다.");
@@ -42,14 +41,14 @@ public class Character {
 
 	public void printInventory() {
 		System.out.println(name + "의 인벤토리:");
-		for (int i = 0; i < getItemCount(); i++) {
+		for (int i = 0; i < items.size(); i++) {
 			Item item = items.get(i);
 			System.out.println("- " + item.getName() + " (공격력:" + item.getAttack() + ", 방어력:" + item.getDefense() + ", 회복력:" + item.getHeal() + ")");
 		}
 	}
 
 	public boolean useItem(String itemName) {
-		for (int i = 0; i < itemCount; i++) {
+		for (int i = 0; i < items.size(); i++) {
 			if (itemNames[i].equals(itemName)) {
 				attack += itemAttack[i];
 				defense += itemDefense[i];
@@ -63,13 +62,13 @@ public class Character {
 	}
 
 	private void removeItem(int index) {
-		for (int i = index; i < itemCount - 1; i++) {
+		for (int i = index; i < items.size() - 1; i++) {
 			itemNames[i] = itemNames[i + 1];
 			itemAttack[i] = itemAttack[i + 1];
 			itemDefense[i] = itemDefense[i + 1];
 			itemHeal[i] = itemHeal[i + 1];
 		}
-		itemCount--;
+		items.remove(index);
 	}
 
 	public void attack(String enemyName, int enemyHp) {
@@ -93,10 +92,6 @@ public class Character {
 		return name;
 	}
 
-	public int getItemCount() {
-		return itemCount;
-	}
-
 	public int getInventoryItemCount() {
 		return items.size();
 	}
@@ -115,6 +110,10 @@ public class Character {
 
 	public int getItemHeal(int index) {
 		return itemHeal[index];
+	}
+
+	public int getItemCount() {
+		return items.size();
 	}
 
 }
