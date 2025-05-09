@@ -31,9 +31,9 @@ public class CharacterTest {
 
     @Test
     void testAddItem(){
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		assertTrue(hero.addItem(new Item("포션", 0, 0, 50)));
+        for( int i=0; i<Character.INVENTORY_SIZE; i++ ){
+            assertTrue(hero.addItem(new Item("검", 10, 0, 0)));
+        }
     }
 
     @Test
