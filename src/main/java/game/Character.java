@@ -41,6 +41,9 @@ public class Character {
 	public boolean useItem(String itemName) {
 		for ( int i= items.size()-1; i>=0 ; i-- ) {
 			if ( Objects.equals(items.get(i).getName(), itemName) ) {
+				attack += items.get(i).getAttack();
+                defense += items.get(i).getDefense();
+                hp += items.get(i).getHeal();
 				System.out.println(items.get(i).getName() + " 아이템을 사용했습니다. 현재 능력치: HP=" + hp + ", 공격력=" + attack + ", 방어력=" + defense);
 				removeItem(i);
 				return true;

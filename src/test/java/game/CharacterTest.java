@@ -71,6 +71,14 @@ public class CharacterTest {
         assertTrue(hero.useItem("검"));
         assertFalse(hero.useItem("검"));
         assertEquals(hero.getItemCount(), 2);
+
+        assertTrue(hero.useItem("방패"));
+        assertEquals(hero.getItemCount(), 1);
+
+        
+        String expectedOutput = "검 아이템을 사용했습니다. 현재 능력치: HP=100, 공격력=60, 방어력=30\r\n"+
+                                "방패 아이템을 사용했습니다. 현재 능력치: HP=100, 공격력=60, 방어력=40\r\n";
+        assertEquals(expectedOutput, outContent.toString());
 	}
 
     @Test
