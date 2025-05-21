@@ -25,17 +25,9 @@ public class Character {
 		}
 	}
 
-	public int getHp() {
-		return hp;
-	}
-
-	public int getAttack() {
-		return attack;
-	}
-
-	public String getName() {
-		return name;
-	}
+    public boolean obtainItem(Item item) {
+		return inventory.addItem(item);
+    }
 
 	public boolean useItem(String itemName) {
 		Item item = inventory.takeItem(itemName);
@@ -49,12 +41,28 @@ public class Character {
 		return false;
 	}
 
-    public void printInventory() {
-		inventory.printInventory(name);
+    public void printItemDetails() {
+		System.out.println("[아이템 상세 정보 출력 시작]");
+		inventory.printItemDetails();
+		System.out.println("[아이템 상세 정보 출력 끝]");
     }
 
-    public boolean obtainItem(Item item) {
-		return inventory.addItem(item);
-    }
+
+	public void printInventory() {
+		System.out.println(name + "의 인벤토리:");
+		inventory.printInventory();
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+
+	public String getName() {
+		return name;
+	}
 
 }

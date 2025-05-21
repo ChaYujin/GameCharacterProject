@@ -101,4 +101,21 @@ public class CharacterTest {
         int count = hero.inventory.getItemCount();
         assertEquals(4, count);
 	}
+    
+    @Test
+    void testPrintItemDetails() {
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
+
+		hero.printItemDetails();
+        
+        String expectedOutput = "[아이템 상세 정보 출력 시작]\r\n" +
+                                "아이템: 검, 공격력: 10, 방어력: 0, 회복량: 0\r\n" +
+                                "아이템: 방패, 공격력: 0, 방어력: 10, 회복량: 0\r\n" +
+                                "아이템: 포션, 공격력: 0, 방어력: 0, 회복량: 50\r\n" +
+                                "[아이템 상세 정보 출력 끝]\r\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }

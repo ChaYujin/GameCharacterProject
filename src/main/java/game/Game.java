@@ -16,7 +16,6 @@ public class Game {
 		BattleSystem battle = new BattleSystem();
 		battle.fight(hero, "드래곤", 120);
 
-
-		hero.inventory.printItemDetails();
+		hero.printItemDetails();
 	}
 }

@@ -9,7 +9,6 @@ public class Inventory {
 	private List<Item> items = new ArrayList<>();
 
 	public void printItemDetails() {
-		System.out.println("[아이템 상세 정보 출력 시작]");
 		for (int i = 0; i < this.getItemCount(); i++) {
 			String name = this.getItemName(i);
 			int atk = this.getItemAttack(i);
@@ -17,7 +16,6 @@ public class Inventory {
 			int heal = this.getItemHeal(i);
 			System.out.println("아이템: " + name + ", 공격력: " + atk + ", 방어력: " + def + ", 회복량: " + heal);
 		}
-		System.out.println("[아이템 상세 정보 출력 끝]");
 	}
 
 	public boolean addItem(Item item) {
@@ -30,8 +28,7 @@ public class Inventory {
 		}
 	}
 
-	public void printInventory(String name) {
-		System.out.println(name + "의 인벤토리:");
+	public void printInventory() {
 		for (Item item : items) {
 			System.out.println("- " + item.getName() + " (공격력:" + item.getAttack() + ", 방어력:" + item.getDefense() + ", 회복력:" + item.getHeal() + ")");
 		}
