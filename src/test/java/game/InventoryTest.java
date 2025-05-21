@@ -9,21 +9,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class InventoryManagerTest {
+public class InventoryTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    InventoryManager inventoryManager;
+    // Inventory inventory;
     Character hero;
     
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        inventoryManager = new InventoryManager();
+        // inventory = new Inventory();
         hero = new Character("Artemis", "Elf", 100, 50, 30);
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		hero.addItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
     }
 
     @AfterEach
@@ -33,7 +33,7 @@ public class InventoryManagerTest {
     
     @Test
     void testPrintItemDetails() {
-		inventoryManager.printItemDetails(hero);
+		hero.inventory.printItemDetails();
         
         String expectedOutput = "[아이템 상세 정보 출력 시작]\r\n" +
                                 "아이템: 검, 공격력: 10, 방어력: 0, 회복량: 0\r\n" +

@@ -1,17 +1,12 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class Character {
 	String name;
 	String race;
 	int hp;
 	int attack;
 	int defense;
-	public static final int INVENTORY_SIZE = 10; // 최대 인벤토리 크기
-	List<Item> items = new ArrayList<>();
+	Inventory inventory = new Inventory();
 
 	public Character(String name, String race, int hp, int attack, int defense) {
 		this.name = name;
@@ -19,41 +14,6 @@ public class Character {
 		this.hp = hp;
 		this.attack = attack;
 		this.defense = defense;
-	}
-
-	public boolean addItem(Item item) {
-		if( items.size() < INVENTORY_SIZE) {
-			items.add(item);
-			return true;
-		} else {
-			System.out.println("인벤토리가 가득 찼습니다.");
-			return false;
-		}
-	}
-
-	public void printInventory() {
-		System.out.println(name + "의 인벤토리:");
-		for (Item item : items) {
-			System.out.println("- " + item.getName() + " (공격력:" + item.getAttack() + ", 방어력:" + item.getDefense() + ", 회복력:" + item.getHeal() + ")");
-		}
-	}
-
-	public boolean useItem(String itemName) {
-		for ( int i= items.size()-1; i>=0 ; i-- ) {
-			if ( Objects.equals(items.get(i).getName(), itemName) ) {
-				attack += items.get(i).getAttack();
-                defense += items.get(i).getDefense();
-                hp += items.get(i).getHeal();
-				System.out.println(items.get(i).getName() + " 아이템을 사용했습니다. 현재 능력치: HP=" + hp + ", 공격력=" + attack + ", 방어력=" + defense);
-				removeItem(i);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private void removeItem(int index) {
-		items.remove(index);
 	}
 
 	public void attack(String enemyName, int enemyHp) {
@@ -77,28 +37,24 @@ public class Character {
 		return name;
 	}
 
-	public int getInventoryItemCount() {
-		return items.size();
+	public boolean useItem(String itemName) {
+		Item item = inventory.takeItem(itemName);
+		if (item != null) {
+			attack += item.getAttack();
+			defense += item.getDefense();
+			hp += item.getHeal();
+			System.out.println(item.getName() + " 아이템을 사용했습니다. 현재 능력치: HP=" + hp + ", 공격력=" + attack + ", 방어력=" + defense);
+			return true;
+		}
+		return false;
 	}
 
-	public String getItemName(int index) {
-		return items.get(index).getName();
-	}
+    public void printInventory() {
+		inventory.printInventory(name);
+    }
 
-	public int getItemAttack(int index) {
-		return items.get(index).getAttack();
-	}
-
-	public int getItemDefense(int index) {
-		return items.get(index).getDefense();
-	}
-
-	public int getItemHeal(int index) {
-		return items.get(index).getHeal();
-	}
-
-	public int getItemCount() {
-		return items.size();
-	}
+    public boolean obtainItem(Item item) {
+		return inventory.addItem(item);
+    }
 
 }

@@ -3,9 +3,9 @@ package game;
 public class Game {
 	public static void main(String[] args) {
 		Character hero = new Character("Artemis", "Elf", 100, 50, 30);
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		hero.addItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
 		hero.printInventory();
 		hero.attack("고블린", 25);
 		hero.useItem("포션");
@@ -16,7 +16,7 @@ public class Game {
 		BattleSystem battle = new BattleSystem();
 		battle.fight(hero, "드래곤", 120);
 
-		InventoryManager manager = new InventoryManager();
-		manager.printItemDetails(hero);
+
+		hero.inventory.printItemDetails();
 	}
 }

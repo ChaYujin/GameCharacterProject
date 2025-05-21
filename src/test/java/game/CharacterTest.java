@@ -31,25 +31,25 @@ public class CharacterTest {
 
     @Test
     void testAddItem(){
-        for( int i=0; i<Character.INVENTORY_SIZE; i++ ){
-            assertTrue(hero.addItem(new Item("검", 10, 0, 0)));
+        for( int i=0; i<Inventory.INVENTORY_SIZE; i++ ){
+            assertTrue(hero.obtainItem(new Item("검", 10, 0, 0)));
         }
     }
 
     @Test
     void testAddItemInventoryFull(){
-        for( int i=0; i<Character.INVENTORY_SIZE; i++ ){
-            assertTrue(hero.addItem(new Item("검", 10, 0, 0)));
+        for( int i=0; i<Inventory.INVENTORY_SIZE; i++ ){
+            assertTrue(hero.obtainItem(new Item("검", 10, 0, 0)));
         }
-        assertFalse(hero.addItem(new Item("검", 10, 0, 0)));
+        assertFalse(hero.obtainItem(new Item("검", 10, 0, 0)));
     }
 
 
     @Test
     void testPrintInventory() {
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		hero.addItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
 
         //when
         hero.printInventory();
@@ -64,16 +64,16 @@ public class CharacterTest {
 
     @Test
 	public void testUseItem() {
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		hero.addItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
 
         assertTrue(hero.useItem("검"));
         assertFalse(hero.useItem("검"));
-        assertEquals(hero.getItemCount(), 2);
+        assertEquals(hero.inventory.getItemCount(), 2);
 
         assertTrue(hero.useItem("방패"));
-        assertEquals(hero.getItemCount(), 1);
+        assertEquals(hero.inventory.getItemCount(), 1);
 
         
         String expectedOutput = "검 아이템을 사용했습니다. 현재 능력치: HP=100, 공격력=60, 방어력=30\r\n"+
@@ -93,12 +93,12 @@ public class CharacterTest {
 
     @Test
 	public void testGetItemCount() {
-		hero.addItem(new Item("검", 10, 0, 0));
-		hero.addItem(new Item("방패", 0, 10, 0));
-		hero.addItem(new Item("포션", 0, 0, 50));
-		hero.addItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("검", 10, 0, 0));
+		hero.obtainItem(new Item("방패", 0, 10, 0));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
+		hero.obtainItem(new Item("포션", 0, 0, 50));
 
-        int count = hero.getItemCount();
+        int count = hero.inventory.getItemCount();
         assertEquals(4, count);
 	}
 }
