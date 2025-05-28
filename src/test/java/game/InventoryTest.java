@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.character.Elf;
+
 public class InventoryTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -18,7 +20,7 @@ public class InventoryTest {
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        hero = new Character("Artemis", "Elf", 100, 50, 30);
+        hero = new Elf("Artemis");
 		hero.obtainItem(new Item("검", 10, 0, 0));
 		hero.obtainItem(new Item("방패", 0, 10, 0));
 		hero.obtainItem(new Item("포션", 0, 0, 50));

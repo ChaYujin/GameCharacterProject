@@ -1,8 +1,10 @@
 package game;
 
+import game.character.Elf;
+
 public class Game {
 	public static void main(String[] args) {
-		Character hero = new Character("Artemis", "Elf", 100, 50, 30);
+		Character hero = new Elf("Artemis");
 		hero.obtainItem(new Item("검", 10, 0, 0));
 		hero.obtainItem(new Item("방패", 0, 10, 0));
 		hero.obtainItem(new Item("포션", 0, 0, 50));

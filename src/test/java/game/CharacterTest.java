@@ -11,6 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.character.Elf;
+
 public class CharacterTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -20,7 +22,7 @@ public class CharacterTest {
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        hero = new Character("Artemis", "Elf", 100, 50, 30);
+        hero = new Elf("Artemis");
     }
 
     @AfterEach
