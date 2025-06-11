@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.character.Elf;
+import game.enemy.Enemy;
 
 public class CharacterTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -85,7 +86,8 @@ public class CharacterTest {
 
     @Test
 	public void testAttack() {
-        hero.attack("고블린", 50);
+        Enemy goblin = new Enemy("고블린", 50);
+        hero.attack(goblin);
         
         String expectedOutput = "Artemis이(가) 고블린을(를) 50의 데미지로 공격했습니다.\r\n" +
                                 "고블린 처치 완료!\r\n";

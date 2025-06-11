@@ -1,5 +1,7 @@
 package game;
 
+import game.enemy.Enemy;
+
 public class Character {
 	String name;
 	String race;
@@ -16,12 +18,13 @@ public class Character {
 		this.defense = defense;
 	}
 
-	public void attack(String enemyName, int enemyHp) {
-		System.out.println(name + "이(가) " + enemyName + "을(를) " + attack + "의 데미지로 공격했습니다.");
-		if (enemyHp - attack <= 0) {
-			System.out.println(enemyName + " 처치 완료!");
+	public void attack(Enemy enemy) {
+		System.out.println(name + "이(가) " + enemy.getName() + "을(를) " + attack + "의 데미지로 공격했습니다.");
+		enemy.damaged(attack);
+		if (enemy.getHp() <= 0) {
+			System.out.println(enemy.getName() + " 처치 완료!");
 		} else {
-			System.out.println(enemyName + "의 남은 HP: " + (enemyHp - attack));
+			System.out.println(enemy.getName() + "의 남은 HP: " + enemy.getHp());
 		}
 	}
 

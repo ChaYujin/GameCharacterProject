@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.character.Elf;
+import game.enemy.Enemy;
 
 public class BattleSystemTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -31,7 +32,7 @@ public class BattleSystemTest {
 
     @Test
     void testFight() {
-        battle.fight(hero, "드래곤", 120);
+        battle.fight(hero, new Enemy("드래곤", 120));
         
         String expectedOutput = "전투 시작! Artemis VS 드래곤\r\n" +
                                 "-- 턴 시작 --\r\n" +
